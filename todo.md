@@ -5,10 +5,12 @@ add jest test
 <del>add material ui</del>
 <del>add cypress</del>
 <del>add typescript</del>
+<del>add next auth</del>
 
 ## features
 
-add next auth
+fix either material ui styling or add semantic ui and check if styles work with ssr
+add header and footer
 add api
 make rest call to create task
 make swimlanes in sprint page and dragable tickers with react dnd - ticket has status and lanes wil be filtered on status - when switching lanes status will be updated
