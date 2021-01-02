@@ -1,11 +1,12 @@
-import "styles/globals.css";
+import { Provider } from "next-auth/client";
+import { FC } from "react";
 
-type Props = {
-  Component: any;
-  pageProps: any;
+const App: FC<any> = ({ Component, pageProps }) => {
+  return (
+    <Provider session={pageProps.session}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 };
-function MyApp({ Component, pageProps }: Props) {
-  return <Component {...pageProps} />;
-}
 
-export default MyApp;
+export default App;
