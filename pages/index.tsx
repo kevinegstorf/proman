@@ -1,65 +1,68 @@
-import Head from "next/head";
-import styles from "styles/Home.module.css";
+import React from "react";
+import { signIn, signOut, useSession } from "next-auth/client";
+import { Grid, Paper, Typography, Button, makeStyles } from "@material-ui/core";
+import Layout from "layout";
 
-export default function Home() {
+const styles = makeStyles({
+  paper: {
+    marginTop: "5em",
+    padding: "4em",
+    display: "flex",
+    flexDirection: "column",
+    color: "#fff",
+    background:
+      "linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(56,255,216,1) 0%, rgba(0,146,255,1) 100%)",
+  },
+  button: { color: "#fff", marginTop: 8 },
+});
+
+export default function Page() {
+  const [session] = useSession();
+  const classes = styles();
+
+  const handleSignIn = () => {
+    signIn();
+  };
+
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <Grid container direction="row" justify="center" alignItems="center">
+      <Grid item>
+        <Paper elevation={6} className={classes.paper}>
+          {!session && (
+            <>
+              <Typography>Not signed in</Typography>
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="secondary"
+                onClick={handleSignIn}
+              >
+                Sign in
+              </Button>
+            </>
+          )}
+          {session && (
+            <>
+              <Layout user={session.user}>
+                Signed in as {session.user.name} <br />
+                {session.user.image && <img src={session.user.image} alt="" />}
+                <Button
+                  className={classes.button}
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleSignOut}
+                >
+                  Sign out
+                </Button>
+              </Layout>
+            </>
+          )}
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
