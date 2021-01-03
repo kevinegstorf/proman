@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { config } from "config";
 
 const Layout: FC<any> = ({ children, user }) => {
-  if (user.email !== config.email) {
+  if (user.email !== "kevin.egstorf@gmail.com") {
     return <div>You have no access</div>;
   }
 
