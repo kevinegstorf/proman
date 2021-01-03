@@ -1,12 +1,11 @@
 import Layout from "layout";
 import { useSession } from "next-auth/client";
-import Router from "next/router";
 
 const Ticket = () => {
   const [session] = useSession();
 
   if (!session) {
-    Router.push("/");
+    return <div>you are not logged in</div>;
   } else {
     return (
       <Layout user={session.user}>
