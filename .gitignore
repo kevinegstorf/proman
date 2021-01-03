@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# secrets
+/config
+
 # production
 /build
 

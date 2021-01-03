@@ -5,10 +5,6 @@
 export default (_req: any, res: any) => {
   res.statusCode = 200;
   res.json({
-    name: "John Doe",
-    tickets: [],
-    startDate: "",
-    endDate: "",
-    point: 0,
+    email: process.env.MY_EMAIL,
   });
 };
