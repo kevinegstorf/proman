@@ -1,7 +1,14 @@
-// import Layout from "layout";
+import Layout from "layout";
+import { useSession } from "next-auth/client";
 
 const Ticket = () => {
-  return <div>Ticket</div>;
+  const [session] = useSession();
+
+  return (
+    <Layout user={session.user}>
+      <div>Ticket</div>
+    </Layout>
+  );
 };
 
 export default Ticket;
