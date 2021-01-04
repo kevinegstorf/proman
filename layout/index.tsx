@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
+import DarkModeButton from "components/DarkModeButton";
 
 const Layout: FC<any> = ({ children, user }) => {
   if (user.email !== "kevin.egstorf@gmail.com") {
@@ -13,6 +14,7 @@ const Layout: FC<any> = ({ children, user }) => {
 
   return (
     <div>
+      <DarkModeButton />
       <h1>Layout</h1>
       {children}
     </div>

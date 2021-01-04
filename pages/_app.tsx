@@ -1,12 +1,15 @@
 import { Provider } from "next-auth/client";
 import { FC } from "react";
-import "semantic-ui-css/semantic.min.css";
+import { ChakraProvider, CSSReset } from "@chakra-ui/react";
 
 const App: FC<any> = ({ Component, pageProps }) => {
   return (
-    <Provider session={pageProps.session}>
-      <Component {...pageProps} />
-    </Provider>
+    <ChakraProvider>
+      <CSSReset />
+      <Provider session={pageProps.session}>
+        <Component {...pageProps} />
+      </Provider>
+    </ChakraProvider>
   );
 };
 

@@ -2,6 +2,7 @@ import React from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
 import Layout from "layout";
 import Link from "next/link";
+import { Center, Button, Box, Text, Avatar } from "@chakra-ui/react";
 
 export default function Page() {
   const [session] = useSession();
@@ -15,25 +16,32 @@ export default function Page() {
   };
 
   return (
-    <div className="ui middle aligned center aligned grid">
-      <div className="column">
+    <>
+      <Center>
         {!session && (
-          <>
-            <h2>Not signed in</h2>
-            <button onClick={handleSignIn}>Sign in</button>
-          </>
+          <Box
+            maxW="sm"
+            borderWidth="1px"
+            borderRadius="lg"
+            overflow="hidden"
+            p="6"
+            mt="300"
+          >
+            <Button onClick={handleSignIn}>Sign in</Button>
+          </Box>
         )}
         {session && (
           <>
             <Layout user={session.user}>
-              Signed in as {session.user.name} <br />
-              {session.user.image && <img src={session.user.image} alt="" />}
-              <button onClick={handleSignOut}>Sign out</button>
-              <Link href="/ticket">Ticket</Link>
+              <Text>Signed in as {session.user.name} </Text>
+
+              {session.user.image && <Avatar src={session.user.image} />}
             </Layout>
+            <Button onClick={handleSignOut}>Sign out</Button>
+            <Link href="/ticket">Ticket</Link>
           </>
         )}
-      </div>
-    </div>
+      </Center>
+    </>
   );
 }
