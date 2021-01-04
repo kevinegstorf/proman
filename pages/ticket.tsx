@@ -1,6 +1,6 @@
 import Layout from "layout";
 import { useSession } from "next-auth/client";
-
+import { Center, Container } from "@chakra-ui/react";
 const Ticket = () => {
   const [session] = useSession();
 
@@ -9,7 +9,11 @@ const Ticket = () => {
   } else {
     return (
       <Layout user={session.user}>
-        <div>Ticket</div>
+        <Container>
+          <Center bg="tomato" h="100px" color="white">
+            <div>Ticket</div>
+          </Center>
+        </Container>
       </Layout>
     );
   }
