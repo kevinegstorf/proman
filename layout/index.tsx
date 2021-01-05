@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { FC } from "react";
 import DarkModeButton from "components/DarkModeButton";
-import { Center } from "@chakra-ui/react";
+import { Center, Box, Link, Container } from "@chakra-ui/react";
 import { useSession } from "next-auth/client";
 
 const Layout: FC<any> = ({ children, page }) => {
@@ -16,16 +15,20 @@ const Layout: FC<any> = ({ children, page }) => {
   }
 
   return (
-    <div>
+    <Center bg="tomato" h="100px" color="white">
       <DarkModeButton />
-      <Center bg="tomato" h="100px" color="white">
-        <Link href="/ticket">Ticket</Link>
-        <Link href="/">Home</Link>
-        <Link href="/backlog">Backlog</Link>
-        {page}
-      </Center>
+      <Link p="4" href="/ticket">
+        Ticket
+      </Link>
+      <Link p="4" href="/">
+        Home
+      </Link>
+      <Link p="4" href="/backlog">
+        Backlog
+      </Link>
+
       {children}
-    </div>
+    </Center>
   );
 };
 

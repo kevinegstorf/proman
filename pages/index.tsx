@@ -33,9 +33,7 @@ export default function Page() {
       {session && (
         <>
           <Text>Signed in as {session.user.name} </Text>
-
           {session.user.image && <Avatar src={session.user.image} />}
-
           <Button onClick={handleSignOut}>Sign out</Button>
         </>
       )}
